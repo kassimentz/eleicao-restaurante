@@ -1,5 +1,4 @@
-{
-  "Restaurantes":
+
   [
     {
       "idRestaurante": 1,
@@ -84,5 +83,4 @@
       "escolhidoSemana": false
     }
   ]
-  
-}
+

@@ -12,4 +12,9 @@
 		</locale-config>
 	</application>
 
+	<converter>
+		<display-name>RestauranteConverter</display-name>
+		<converter-id>restauranteConverter</converter-id>
+		<converter-class>com.teste.eleicaoRestaurante.converter.RestauranteConverter</converter-class>
+	</converter>
 </faces-config>

@@ -2,7 +2,7 @@ package com.teste.eleicaoRestaurante.modelo;
 
 public class Restaurante {
 
-	private Long idRestaurante;
+	private int idRestaurante;
 	private String nome;
 	private boolean escolhidoSemana;
 
@@ -10,11 +10,11 @@ public class Restaurante {
 
 	}
 
-	public Long getIdRestaurante() {
+	public int getIdRestaurante() {
 		return idRestaurante;
 	}
 
-	public void setIdRestaurante(Long idRestaurante) {
+	public void setIdRestaurante(int idRestaurante) {
 		this.idRestaurante = idRestaurante;
 	}
 
@@ -38,8 +38,7 @@ public class Restaurante {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-				+ ((idRestaurante == null) ? 0 : idRestaurante.hashCode());
+		result = prime * result + idRestaurante;
 		return result;
 	}
 
@@ -52,10 +51,7 @@ public class Restaurante {
 		if (getClass() != obj.getClass())
 			return false;
 		Restaurante other = (Restaurante) obj;
-		if (idRestaurante == null) {
-			if (other.idRestaurante != null)
-				return false;
-		} else if (!idRestaurante.equals(other.idRestaurante))
+		if (idRestaurante != other.idRestaurante)
 			return false;
 		return true;
 	}
