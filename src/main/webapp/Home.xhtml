@@ -31,29 +31,43 @@
 
 	<div id="conteudo">
 		<ui:insert name="corpo" />
-
-		<h:form>
+		<f:metadata>
+			<f:viewAction action="#{indexController.init}" />
+		</f:metadata>
+		<h:form id="frmVotacao">
 			<p:messages autoUpdate="true" />
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<p:outputLabel value="Para votar é necessário informar seu CPF. Somente é permitido uma votação por dia por CPF." />
+			</h:panelGrid>
+			
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 				<p:outputLabel for="cpfEleitor" value="Informe seu CPF para votar:" />
-				<p:inputMask mask="999.999.999.99" id="cpfEleitor"></p:inputMask>
+				<p:inputMask mask="999.999.999-99" id="cpfEleitor" value="#{indexController.voto.cpf}" converter="cpfConverter"></p:inputMask>
 			</h:panelGrid>
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 
 				<p:outputLabel for="restauranteSelecionado" value="Escolha o Restaurante:" />
-				<p:selectOneMenu id="restauranteSelecionado" value="#{indexController.restaurante}"
+				<p:selectOneMenu id="restauranteSelecionado" value="#{indexController.voto.restaurante}"
 					converter="restauranteConverter">
 					<f:selectItems value="#{indexController.restaurantes}" var="res"
 						itemValue="#{res}" itemLabel="#{res.nome}" />
 				</p:selectOneMenu>
 
 			</h:panelGrid>
-
+			
+			
+			
 			<h:panelGrid>
-				<p:commandButton value="Votar" id="botaoSalvar" ajax="false" />
+				<p:commandButton value="Votar" id="botaoSalvar" ajax="false" action="#{indexController.Salvar}" />
 			</h:panelGrid>
+			
+			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
+				<p:outputLabel value="Número de votos:" />
+				<p:outputLabel value="#{indexController.nroVotos}"></p:outputLabel>
+			</h:panelGrid>
+			
 		</h:form>
 	</div>
 

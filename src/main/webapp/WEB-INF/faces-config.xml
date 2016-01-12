@@ -17,4 +17,10 @@
 		<converter-id>restauranteConverter</converter-id>
 		<converter-class>com.teste.eleicaoRestaurante.converter.RestauranteConverter</converter-class>
 	</converter>
+	
+	<converter>
+		<display-name>CpfConverter</display-name>
+		<converter-id>cpfConverter</converter-id>
+		<converter-class>com.teste.eleicaoRestaurante.converter.CpfConverter</converter-class>
+	</converter>
 </faces-config>
