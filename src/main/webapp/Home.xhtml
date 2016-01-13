@@ -13,14 +13,6 @@
 </h:head>
 
 <h:body>
-	<p:ajaxStatus styleClass="ajax-status">
-		<f:facet name="start">
-			<h:graphicImage library="imagens" name="carregando.gif" />
-		</f:facet>
-		<f:facet name="complete">
-			<h:outputText value="" />
-		</f:facet>
-	</p:ajaxStatus>
 
 	<header>
 		<div style="float: left">
@@ -60,7 +52,7 @@
 			
 			
 			<h:panelGrid>
-				<p:commandButton value="Votar" id="botaoSalvar" ajax="false" action="#{indexController.Salvar}" />
+				<p:commandButton value="Votar" id="botaoSalvar"  action="#{indexController.Salvar}" update="frmVotacao"/>
 			</h:panelGrid>
 			
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">

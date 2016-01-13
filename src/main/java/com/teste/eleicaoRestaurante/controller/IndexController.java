@@ -1,11 +1,12 @@
 package com.teste.eleicaoRestaurante.controller;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.view.ViewScoped;
 
 import com.teste.eleicaoRestaurante.modelo.Restaurante;
 import com.teste.eleicaoRestaurante.modelo.Voto;
@@ -13,8 +14,12 @@ import com.teste.eleicaoRestaurante.service.RestauranteService;
 import com.teste.eleicaoRestaurante.service.VotoService;
 
 @ManagedBean
-public class IndexController {
+@ViewScoped
+public class IndexController implements Serializable{
 
+
+	private static final long serialVersionUID = 1L;
+	
 	private Restaurante restaurante;
 	private List<Restaurante> restaurantes;
 	private Voto voto;
@@ -39,9 +44,13 @@ public class IndexController {
 //	private FacesMessages facesMessages;
 	public void Salvar(){
 		//salvar os votos em um json - implementar os services
+		votoService = new VotoService();
 		votoService.Salvar(voto);
 		nroVotos = votoService.getNroVotos();
 		limpar();
+		//esta dando erro quando salva o terceiro 
+		//com.sun.faces.context.AjaxExceptionHandlerImpl handlePartialResponseError
+		//GRAVE: javax.faces.application.ViewExpiredException
 //		facesMessages.info("Voto salvo com sucesso!");
 	}
 	
