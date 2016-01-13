@@ -1,6 +1,7 @@
 package com.teste.eleicaoRestaurante.service;
 
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import com.teste.eleicaoRestaurante.jsonDao.VotoDao;
@@ -39,11 +40,11 @@ public class VotoService {
 		
 	}
 	
-	public boolean verificaCpf(String cpf){
-		//verificar se o cpf ja se encntra na relacao de votantes da semana
+	public boolean verificaEleitor(Voto v){
+		//verificar se o cpf ja se encontra na relacao de votantes da semana - verificar a data
 		boolean encontrou = false;
 		for (Voto voto : votos) {
-			if(voto.getCpf().equalsIgnoreCase(cpf)){
+			if( (voto.getCpf().equalsIgnoreCase(v.getCpf())) && (voto.getData() == v.getData())){
 				encontrou = true;
 			}
 		}

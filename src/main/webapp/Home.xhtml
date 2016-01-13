@@ -35,8 +35,13 @@
 			
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 				<p:outputLabel for="cpfEleitor" value="Informe seu CPF para votar:" />
-				<p:inputMask mask="999.999.999-99" id="cpfEleitor" value="#{indexController.voto.cpf}" converter="cpfConverter"></p:inputMask>
+				
+				<p:inputMask  mask="999.999.999-99" converter="cpfConverter" id="cpfEleitor" value="#{indexController.voto.cpf}" required="true">
+           				<f:ajax event="blur" render="messages" listener="#{indexController.verificaCpf()}"></f:ajax>		
+				</p:inputMask>
 			</h:panelGrid>
+			
+			
 
 			<h:panelGrid columns="2" style="margin-bottom:10px" cellpadding="5">
 

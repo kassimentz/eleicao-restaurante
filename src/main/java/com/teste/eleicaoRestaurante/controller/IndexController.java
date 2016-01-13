@@ -1,17 +1,19 @@
 package com.teste.eleicaoRestaurante.controller;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
-import javax.faces.view.ViewScoped;
+import javax.faces.bean.ViewScoped;
 
 import com.teste.eleicaoRestaurante.modelo.Restaurante;
 import com.teste.eleicaoRestaurante.modelo.Voto;
 import com.teste.eleicaoRestaurante.service.RestauranteService;
 import com.teste.eleicaoRestaurante.service.VotoService;
+import com.teste.eleicaoRestaurante.util.FacesUtil;
 
 @ManagedBean
 @ViewScoped
@@ -45,13 +47,27 @@ public class IndexController implements Serializable{
 	public void Salvar(){
 		//salvar os votos em um json - implementar os services
 		votoService = new VotoService();
+		voto.setData(new Date());
 		votoService.Salvar(voto);
 		nroVotos = votoService.getNroVotos();
 		limpar();
+		
+		FacesUtil.addSuccessMessage("Voto salvo com sucesso");
 		//esta dando erro quando salva o terceiro 
 		//com.sun.faces.context.AjaxExceptionHandlerImpl handlePartialResponseError
 		//GRAVE: javax.faces.application.ViewExpiredException
 //		facesMessages.info("Voto salvo com sucesso!");
+	}
+	
+	public void verificaCpf(){
+		votoService = new VotoService();
+		boolean encontrou = votoService.verificaEleitor(voto);
+		if(encontrou){
+			FacesUtil.addErrorMessage("Este CPF já Votou hoje! Seu voto será contabilizado para amanhã!");
+			limpar();
+		}else{
+			voto.setData(new Date());//acrescentar + 1 dia;
+		}
 	}
 	
 	public Restaurante getRestaurante() {

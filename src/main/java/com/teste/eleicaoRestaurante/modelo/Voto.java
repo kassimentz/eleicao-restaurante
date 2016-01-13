@@ -1,9 +1,12 @@
 package com.teste.eleicaoRestaurante.modelo;
 
+import java.util.Date;
+
 public class Voto {
 
 	private String cpf;
 	private Restaurante restaurante;
+	private Date data;
 	
 	public Voto(){
 		
@@ -25,13 +28,23 @@ public class Voto {
 		this.restaurante = restaurante;
 	}
 
-	
+	public Date getData() {
+		return data;
+	}
+
+	public void setData(Date data) {
+		this.data = data;
+	}
 
 	@Override
 	public String toString() {
-		return "Voto [ cpf=" + cpf + ", restaurante="
-				+ restaurante + "]";
+		return "Voto [cpf=" + cpf + ", restaurante=" + restaurante + ", data="
+				+ data + "]";
 	}
+
+	
+
+	
 	
 	
 	
