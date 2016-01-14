@@ -36,6 +36,8 @@ public class IndexController implements Serializable{
 	@PostConstruct
 	public void init() {
 		restaurantes = service.getRestaurantes();
+		votoService = new VotoService();
+		iniciaTimer();
 		limpar();
 	}
 
@@ -46,7 +48,7 @@ public class IndexController implements Serializable{
 //	private FacesMessages facesMessages;
 	public void Salvar(){
 		//salvar os votos em um json - implementar os services
-		votoService = new VotoService();
+		
 		voto.setData(new Date());
 		votoService.Salvar(voto);
 		nroVotos = votoService.getNroVotos();
@@ -116,6 +118,18 @@ public class IndexController implements Serializable{
 		this.nroVotos = nroVotos;
 	}
 	
-	
+	public void iniciaTimer() {
+		System.out.println("timer iniciado");
+		new java.util.Timer().schedule(
+
+		new java.util.TimerTask() {
+			@Override
+			public void run() {
+				if(votoService.verificaTerminoVotacao()){
+					FacesUtil.addSuccessMessage("Votacao encerrada! o Vencedor é: "+ votoService.getVencedor().getNome());
+				}
+			}
+		}, 60000);
+	}
 
 }
