@@ -1,6 +1,7 @@
 package com.teste.eleicaoRestaurante.controller;
 
 import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -68,7 +69,7 @@ public class IndexController implements Serializable{
 			FacesUtil.addErrorMessage("Este CPF já Votou hoje! Seu voto será contabilizado para amanhã!");
 			limpar();
 		}else{
-			voto.setData(new Date());//acrescentar + 1 dia;
+			voto.setData(getTomorrow());//acrescentar + 1 dia;
 		}
 	}
 	
@@ -130,6 +131,14 @@ public class IndexController implements Serializable{
 				}
 			}
 		}, 60000);
+	}
+	
+	public Date getTomorrow(){
+		Date today = new Date();               
+		Calendar cal = Calendar.getInstance(); 
+		cal.setTime(today); 
+		cal.add(Calendar.DATE, 1);
+		return cal.getTime();
 	}
 
 }
